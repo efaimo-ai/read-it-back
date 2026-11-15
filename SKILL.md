@@ -1,6 +1,6 @@
 ---
 name: read-it-back
-description: Use right after a shell command or a script wrote or changed a file, and before running anything that depends on it - sed -i, perl -pi, a heredoc, echo or Set-Content redirection, python -c, node -e, a bulk find-and-replace, a codemod, a generator. Exit code 0 does not say the bytes landed, because the shell expands backticks, $ and backslashes inside the payload and a replacement that matches nothing still succeeds. Skip it after an edit tool that already fails on a missing match.
+description: Use right after a shell command or a script wrote or changed a file, and before running anything that depends on it - sed -i, perl -pi, a heredoc, echo or Set-Content redirection, python -c, node -e, a bulk find-and-replace, a codemod, a generator. Exit code 0 does not say the bytes landed, because the shell expands backticks, $ and backslashes inside the payload and a replacement that matches nothing still succeeds. Also use when writing such a command for a script or CI step, so it fails when nothing matched. Skip it after an edit tool that already fails on a missing match.
 license: Apache-2.0
 metadata:
   version: "0.1.0"

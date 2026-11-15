@@ -36,6 +36,9 @@ All notable changes to read-it-back are documented here. Format follows
   without punctuation, so `read-back` is refused while `readback` exists. The
   skill name, the package name and the install directory change together; the
   repository keeps its old address for now.
+- The description also covers writing such a command for a script or CI step,
+  so the command fails when nothing matched. An eval case that asked for a CI
+  one-liner never loaded the skill before this line.
 - The description now names the writes the skill is for (shell commands and
   scripts) and says to skip it after an edit tool that already fails on a
   missing match, which is what the body always said.
