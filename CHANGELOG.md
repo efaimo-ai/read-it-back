@@ -1,13 +1,13 @@
 # Changelog
 
-All notable changes to read-back are documented here. Format follows
+All notable changes to read-it-back are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); this project uses
 [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
 > **Not published yet.** This entry describes what is on `main` and is
-> dated when it ships. The first publish of `read-back` cannot carry provenance:
+> dated when it ships. The first publish of `read-it-back` cannot carry provenance:
 > npm's trusted publishing is configured from an existing package's settings
 > page, so it cannot create a package that has never been published, and the
 > authenticated session that can create one cannot mint an OIDC attestation.
@@ -18,7 +18,7 @@ All notable changes to read-back are documented here. Format follows
 ### Added
 
 - **The skill is installable.** `npx -y --allow-git=all github:efaimo-ai/read-back` copies `SKILL.md` and its
-  `references/` into `./.claude/skills/read-back/`, with `--global`, `--dir`,
+  `references/` into `./.claude/skills/read-it-back/`, with `--global`, `--dir`,
   `--check`, `--print`, `--uninstall` and `--force`. The installer reads every
   byte back after writing it and fails if what landed is not what it wrote, and
   it prints how many files it installed rather than only that it succeeded.
@@ -30,10 +30,24 @@ All notable changes to read-back are documented here. Format follows
   run that packs the package the way npm would, installs it from that tarball,
   and installs the skill from there.
 
+### Changed
+
+- **Renamed from `read-back` to `read-it-back`.** npm compares package names
+  without punctuation, so `read-back` is refused while `readback` exists. The
+  skill name, the package name and the install directory change together; the
+  repository keeps its old address for now.
+- The description now names the writes the skill is for (shell commands and
+  scripts) and says to skip it after an edit tool that already fails on a
+  missing match, which is what the body always said.
+- Step 1 carries the counting code it calls the most valuable habit, plus the
+  `grep -c` form for sed.
+- A PowerShell tell: double-quoted `$` expansion, the backtick escape, and the
+  Windows PowerShell 5.1 encoding default of `Set-Content` and `Add-Content`.
+- The failure gallery's examples use generic paths.
+
 ### Notes
 
-- The skill's own content did not change for this release. It grades A(100) on
-  `efaimo check --skill` before and after, and the package version and the
-  version in `SKILL.md` frontmatter are one number, pinned by a test.
+- The package version and the version in `SKILL.md` frontmatter are one number,
+  pinned by a test.
 
 [Unreleased]: https://github.com/efaimo-ai/read-back/commits/main

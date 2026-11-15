@@ -1,4 +1,4 @@
-# read-back
+# read-it-back
 
 [![license](https://img.shields.io/badge/license-Apache--2.0-0b7285)](LICENSE)
 [![grade](https://img.shields.io/badge/efaimo%20check--skill-A%20(100)-0b7285)](https://efaimo.com/skills)
@@ -9,8 +9,12 @@ have applied something other than what you wrote.** This is the discipline for
 noticing before you build on it.
 
 ```
-Skill: read-back
+Skill: read-it-back
 ```
+
+It was called `read-back` until 2026-11. npm compares package names without
+punctuation and `readback` is already taken, so the skill took a name it can
+publish under. This repository keeps its old address until it is renamed too.
 
 No runtime, no dependencies, nothing to configure: the whole thing is
 `SKILL.md` plus one reference file, and any way of getting that directory onto
@@ -21,18 +25,18 @@ your skills path works.
 ## Install
 
 ```sh
-# into ./.claude/skills/read-back/
+# into ./.claude/skills/read-it-back/
 npx -y --allow-git=all github:efaimo-ai/read-back
 
-# into ~/.claude/skills/read-back/, for every project
+# into ~/.claude/skills/read-it-back/, for every project
 npx -y --allow-git=all github:efaimo-ai/read-back --global
 
 # installed already, and still current?
 npx -y --allow-git=all github:efaimo-ai/read-back --check
 ```
 
-That is the repository, not the registry, and it is deliberate: `read-back` is
-not on npm yet, and printing `npx read-back` today would advertise a command that
+That is the repository, not the registry, and it is deliberate: `read-it-back` is
+not on npm yet, and printing `npx read-it-back` today would advertise a command that
 404s.
 
 `--allow-git=all` is there because npm 12 refuses git specs by default
@@ -40,10 +44,10 @@ not on npm yet, and printing `npx read-back` today would advertise a command tha
 `--allow-git=<spec>` is still refused. **You should not enjoy typing it.**
 Switching off a protection npm added on purpose is a poor way to install
 anything, and the honest alternative is that this skill is markdown: copy
-`SKILL.md` and its `references/` into `.claude/skills/read-back/` and you are
+`SKILL.md` and its `references/` into `.claude/skills/read-it-back/` and you are
 done, with nothing to trust.
 
-Both of those go away when the package publishes, because `npx read-back` needs
+Both of those go away when the package publishes, because `npx read-it-back` needs
 no flag on either npm major. This README is regenerated from a committed
 registry probe, so that sentence changes itself rather than waiting for someone
 to remember it.
@@ -103,9 +107,10 @@ into it, and the file on disk is not what you authored.
    exactly the number of times you expect. Zero is a failure, not a no-op.
 2. Keep the payload off the command line. Write it to a file; a file's bytes are
    yours.
-3. Prefer a structured edit tool, which fails loudly on an absent match.
-4. Read back the changed region, unless the tool already failed loudly. The
-   bytes, not the exit code.
+3. Prefer a structured edit tool, which fails loudly on an absent match. After
+   one of those, the skill has nothing to add.
+4. Read back the changed region when the write went through a shell or a
+   script. The bytes, not the exit code.
 5. Then run the thing that depends on it.
 
 ## Relation to red-before-green
@@ -139,7 +144,7 @@ ever fires.
 
 ```mermaid
 flowchart LR
-    N["npx -y --allow-git=all github:efaimo-ai/read-back"] --> D[/".claude/skills/read-back/"/]
+    N["npx -y --allow-git=all github:efaimo-ai/read-back"] --> D[/".claude/skills/read-it-back/"/]
     D --> M["frontmatter<br/><b>every session, always</b>"]
     D --> B["SKILL.md body<br/><i>only when it triggers</i>"]
     D --> R["references/<br/><i>only if the agent reads them</i>"]
@@ -152,8 +157,7 @@ flowchart LR
     class B,R lazy;
 ```
 
-In this skill's case, measured by [efaimo](https://github.com/efaimo-ai/efaimo) `weigh` (v0.6.0, 2026-11-02):
-**81 tokens always resident**, 1,172 when it triggers, 1,717 across 1 reference file if the agent reads to the end.
+
 
 <!-- /generated:pipeline -->
 
@@ -167,7 +171,7 @@ Every skill in this set is about a report that was true about the wrong thing.
 |---|---|---|
 | [`red-before-green`](https://github.com/efaimo-ai/red-before-green) | a check said clean | whether it ran at all |
 | [`denominator`](https://github.com/efaimo-ai/denominator) | a check said clean | how much of the world it saw |
-| **`read-back`** | a write said done | whether it applied |
+| **`read-it-back`** | a write said done | whether it applied |
 | [`claim-sweep`](https://github.com/efaimo-ai/claim-sweep) | a change said done | everything else still asserting the old value |
 | [`unreleased-guard`](https://github.com/efaimo-ai/unreleased-guard) | a document said true | which version it is true of |
 | [`honest-chart`](https://github.com/efaimo-ai/honest-chart) | a picture said the data | whether its geometry is proportional |
@@ -178,27 +182,27 @@ Every skill in this set is about a report that was true about the wrong thing.
 graph TD
     red_before_green["red-before-green"]
     denominator["denominator"]
-    read_back["read-back"]
+    read_it_back["read-it-back"]
     claim_sweep["claim-sweep"]
     unreleased_guard["unreleased-guard"]
     honest_chart["honest-chart"]
     mcp_stateless_migration["mcp-stateless-migration"]
     efaimo["efaimo"]
     red_before_green --- denominator
-    red_before_green --- read_back
+    red_before_green --- read_it_back
     denominator --- claim_sweep
-    read_back --- claim_sweep
+    read_it_back --- claim_sweep
     claim_sweep --- red_before_green
     claim_sweep --- unreleased_guard
     unreleased_guard --- red_before_green
     honest_chart --- red_before_green
-    honest_chart --- read_back
+    honest_chart --- read_it_back
     mcp_stateless_migration --- unreleased_guard
     mcp_stateless_migration --- red_before_green
     efaimo --- denominator
     efaimo --- mcp_stateless_migration
     classDef self fill:#0b728533,stroke:#0b7285,stroke-width:2px;
-    class read_back self;
+    class read_it_back self;
 ```
 
 Each edge is a real handoff, not a category: the reason one skill points at

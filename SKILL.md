@@ -1,6 +1,6 @@
 ---
-name: read-back
-description: Use immediately after any write a tool reported as successful, and before running anything that depends on it - a file edited through a shell command, a patch applied with sed or perl, a heredoc, an inline string replacement, a config rewritten in place, a bulk rename, a generated file. A shell rewrites the payload it carries, and a replacement that matches nothing exits 0.
+name: read-it-back
+description: Use right after a shell command or a script wrote or changed a file, and before running anything that depends on it - sed -i, perl -pi, a heredoc, echo or Set-Content redirection, python -c, node -e, a bulk find-and-replace, a codemod, a generator. Exit code 0 does not say the bytes landed, because the shell expands backticks, $ and backslashes inside the payload and a replacement that matches nothing still succeeds. Skip it after an edit tool that already fails on a missing match.
 license: Apache-2.0
 metadata:
   version: "0.1.0"
@@ -8,18 +8,17 @@ metadata:
   verified_against: "2026-09-03"
 ---
 
-# read-back
+# read-it-back
 
-`red-before-green` is about instruments: a check that passed may never have
-checked. This is about actuators: **a write that succeeded may never have
-applied, or may have applied something other than what you wrote.**
-
-They are not the same problem, and the second one is quieter. A suspicious green
-is at least a result you can interrogate. A failed write leaves you an exit code
-of 0, a success line you printed yourself, and a file that has silently become
+**A write that succeeded may never have applied, or may have applied something
+other than what you wrote.** A failed write leaves you an exit code of 0, a
+success line you printed yourself, and a file that has silently become
 something you did not author. Nothing in that sequence looks wrong until much
 later, when the thing you thought you fixed is still broken and you go looking
 in the wrong place, because you are certain that edit landed.
+
+This applies when the write went through a shell or a script. An edit tool that
+fails when its target string is missing has already done the checking for you.
 
 ## Why a write is not a write
 
@@ -44,6 +43,16 @@ the vacuous pass that `red-before-green` is about, just pointed the other way.
    expect." Zero matches is a failure, not a no-op; so is three when you meant
    one. This single habit converts the silent miss into a stop, and it is worth
    more than the other four together.
+
+   ```python
+   n = text.count(old)
+   if n != 1:
+       raise SystemExit(f"expected 1 occurrence of {old!r}, found {n}")
+   text = text.replace(old, new)
+   ```
+
+   With sed, count first: `grep -c 'old' file` must print the number of lines
+   you expect to change, and `0` means stop.
 2. **Keep the payload off the command line.** Write it to a file and have your
    program read the file. A file's bytes are yours. A command line's bytes
    belong to the shell until it decides to hand them over.
@@ -76,22 +85,22 @@ Be most suspicious when any of these is true.
 - On a retry, the edit reports "already applied." Sometimes true. Sometimes the
   first attempt wrote nothing and the second is matching its own absence.
 - The file is large or generated and you were never going to open it.
+- PowerShell: inside double quotes `$name` expands and the backtick is the
+  escape character. Carry a payload in a single-quoted here-string
+  (`@'` ... `'@`, closing marker at column 0). In Windows PowerShell 5.1,
+  `Set-Content` and `Add-Content` write the system code page unless you pass
+  `-Encoding utf8`.
 
 Real ones, with what each printed and how it announced itself, are in
 [references/failure-gallery.md](references/failure-gallery.md): the loud ones,
 the quiet ones that reported success and wrote something else, and the ones that
 are correct on your machine and corrupt on a colleague's.
 
-## What this is not
+## Scope
 
-This is not "avoid the shell." The shell is excellent at moving bytes between
-places. It is unreliable as the **carrier of bytes you are authoring**, which is
-a different job that it is routinely asked to do because the one-liner is right
-there.
-
-It is also not a claim that your edit was wrong. It is a claim that the exit
-code did not tell you whether your edit was right, and that you have been
-reading it as though it did.
+Keep using the shell to move, copy and run things. The habit is for the moment
+it carries bytes you are authoring, and for any write whose only report is an
+exit code.
 
 <!-- generated:siblings -->
 

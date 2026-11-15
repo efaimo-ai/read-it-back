@@ -41,7 +41,7 @@ This is the one to design against.
 ```
 python3 -c "
 p = pathlib.Path(...)
-new = '''- **CLI README** - `efaimo/README.md` somewhere ... uses only lowercase `efaimo`.'''
+new = '''- **CLI README** - `docs/README.md` somewhere ... uses only lowercase `acme`.'''
 ...
 print('queued the README identity line')
 "
@@ -60,7 +60,7 @@ Exit code 0. The line that reached the file was:
 ```
 
 Two backtick-quoted spans were consumed by the outer double-quoted shell string
-as command substitution. The shell ran `efaimo/README.md` as a command, which
+as command substitution. The shell ran `docs/README.md` as a command, which
 failed into a separate error stream nobody was reading, substituted its empty
 output, and handed Python a string with two holes in it. Python then did exactly
 what it was asked with the string it was given, and reported success, because
@@ -143,8 +143,8 @@ ead-back
 ead-back/package.json'
 ```
 
-Six repositories went red at once, one of them this one, on a step whose whole
-purpose was to prove the package installs correctly.
+Six repositories went red at once, on a step whose whole purpose was to prove
+the package installs correctly.
 
 Two things are worth separating here. The corruption was not the shell's: the
 shell was faithful, and the string literal was the compiler. And the bug was

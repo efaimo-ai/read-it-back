@@ -1,7 +1,7 @@
 {
-  "name": "read-back",
+  "name": "read-it-back",
   "version": "0.1.0",
-  "description": "Use immediately after any write a tool reported as successful, and before running anything that depends on it.",
+  "description": "Use right after a shell command or a script wrote or changed a file, and before running anything that depends on it.",
   "type": "module",
   "license": "Apache-2.0",
   "author": "efaimo ai (https://efaimo.ai)",
@@ -22,7 +22,7 @@
     "mcp"
   ],
   "bin": {
-    "read-back": "bin/install.mjs"
+    "read-it-back": "bin/install.mjs"
   },
   "files": [
     "SKILL.md",
