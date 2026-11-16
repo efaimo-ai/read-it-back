@@ -8,10 +8,10 @@
   "homepage": "https://efaimo.com/skills",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/efaimo-ai/read-back.git"
+    "url": "git+https://github.com/efaimo-ai/read-it-back.git"
   },
   "bugs": {
-    "url": "https://github.com/efaimo-ai/read-back/issues"
+    "url": "https://github.com/efaimo-ai/read-it-back/issues"
   },
   "keywords": [
     "agent-skill",

@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/badge/license-Apache--2.0-0b7285)](LICENSE)
 [![grade](https://img.shields.io/badge/efaimo%20check--skill-A%20(100)-0b7285)](https://efaimo.com/skills)
-[![house-style](https://github.com/efaimo-ai/read-back/actions/workflows/house-style.yml/badge.svg)](https://github.com/efaimo-ai/read-back/actions/workflows/house-style.yml)
+[![house-style](https://github.com/efaimo-ai/read-it-back/actions/workflows/house-style.yml/badge.svg)](https://github.com/efaimo-ai/read-it-back/actions/workflows/house-style.yml)
 
 An Agent Skill. **A write that reported success may not have applied, or may
 have applied something other than what you wrote.** This is the discipline for
@@ -14,7 +14,8 @@ Skill: read-it-back
 
 It was called `read-back` until 2026-11. npm compares package names without
 punctuation and `readback` is already taken, so the skill took a name it can
-publish under. This repository keeps its old address until it is renamed too.
+publish under. The repository was renamed with it, and GitHub redirects the old
+address here.
 
 No runtime, no dependencies, nothing to configure: the whole thing is
 `SKILL.md` plus one reference file, and any way of getting that directory onto
@@ -26,13 +27,13 @@ your skills path works.
 
 ```sh
 # into ./.claude/skills/read-it-back/
-npx -y --allow-git=all github:efaimo-ai/read-back
+npx -y --allow-git=all github:efaimo-ai/read-it-back
 
 # into ~/.claude/skills/read-it-back/, for every project
-npx -y --allow-git=all github:efaimo-ai/read-back --global
+npx -y --allow-git=all github:efaimo-ai/read-it-back --global
 
 # installed already, and still current?
-npx -y --allow-git=all github:efaimo-ai/read-back --check
+npx -y --allow-git=all github:efaimo-ai/read-it-back --check
 ```
 
 That is the repository, not the registry, and it is deliberate: `read-it-back` is
@@ -58,7 +59,7 @@ what it wrote. It refuses to overwrite a directory whose contents differ unless
 you pass `--force`, and installing the same version twice is a success rather
 than a conflict.
 
-Or take it by hand. It is markdown; `npx -y --allow-git=all github:efaimo-ai/read-back --print` writes `SKILL.md` to
+Or take it by hand. It is markdown; `npx -y --allow-git=all github:efaimo-ai/read-it-back --print` writes `SKILL.md` to
 stdout, and the repository is the whole thing.
 
 <!-- /generated:install -->
@@ -66,8 +67,8 @@ stdout, and the repository is the whole thing.
 ## Where a write goes wrong
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-eb4dafc22a-dark.png">
-  <img alt="What you wrote passes through the shell, which expands, splits and quotes it, and the command passes what it received to the tool, which writes what lands on disk. The tool's exit 0 says nothing about what landed, so read it back and compare." src="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-eb4dafc22a-light.png" width="342">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-it-back/main/assets/diagram-eb4dafc22a-dark.png">
+  <img alt="What you wrote passes through the shell, which expands, splits and quotes it, and the command passes what it received to the tool, which writes what lands on disk. The tool's exit 0 says nothing about what landed, so read it back and compare." src="https://raw.githubusercontent.com/efaimo-ai/read-it-back/main/assets/diagram-eb4dafc22a-light.png" width="342">
 </picture>
 
 <details>
@@ -154,8 +155,8 @@ the start of every session for every skill you have installed, whether or not it
 ever fires.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-6e12525ded-dark.png">
-  <img alt="Installing puts SKILL.md and references/ in .claude/skills/read-it-back/. The frontmatter enters your context window in every session, the body only when the skill triggers, and the references only if the agent reads them." src="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-6e12525ded-light.png" width="756">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-it-back/main/assets/diagram-480587dd13-dark.png">
+  <img alt="Installing puts SKILL.md and references/ in .claude/skills/read-it-back/. The frontmatter enters your context window in every session, the body only when the skill triggers, and the references only if the agent reads them." src="https://raw.githubusercontent.com/efaimo-ai/read-it-back/main/assets/diagram-480587dd13-light.png" width="756">
 </picture>
 
 <details>
@@ -164,7 +165,7 @@ ever fires.
 ```text
 flowchart TD
     accDescr: Installing puts SKILL.md and references/ in .claude/skills/read-it-back/. The frontmatter enters your context window in every session, the body only when the skill triggers, and the references only if the agent reads them.
-    N["npx -y --allow-git=all github:efaimo-ai/read-back"] --> D[/".claude/skills/read-it-back/"/]
+    N["npx -y --allow-git=all github:efaimo-ai/read-it-back"] --> D[/".claude/skills/read-it-back/"/]
     D --> M["frontmatter<br/><b>every session, always</b>"]
     D --> B["SKILL.md body<br/><i>only when it triggers</i>"]
     D --> R["references/<br/><i>only if the agent reads them</i>"]
@@ -201,8 +202,8 @@ Every skill in this set is about a report that was true about the wrong thing.
 | [`efaimo`](https://github.com/efaimo-ai/efaimo) | a tool said A(100) | what a grade certifies, and what it costs |
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-662c01e10e-dark.png">
-  <img alt="Every skill in the set and the efaimo CLI, with an edge for each handoff between two of them. read-it-back is highlighted." src="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-662c01e10e-light.png" width="758">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-it-back/main/assets/diagram-662c01e10e-dark.png">
+  <img alt="Every skill in the set and the efaimo CLI, with an edge for each handoff between two of them. read-it-back is highlighted." src="https://raw.githubusercontent.com/efaimo-ai/read-it-back/main/assets/diagram-662c01e10e-light.png" width="758">
 </picture>
 
 <details>

@@ -17,7 +17,7 @@ All notable changes to read-it-back are documented here. Format follows
 
 ### Added
 
-- **The skill is installable.** `npx -y --allow-git=all github:efaimo-ai/read-back` copies `SKILL.md` and its
+- **The skill is installable.** `npx -y --allow-git=all github:efaimo-ai/read-it-back` copies `SKILL.md` and its
   `references/` into `./.claude/skills/read-it-back/`, with `--global`, `--dir`,
   `--check`, `--print`, `--uninstall` and `--force`. The installer reads every
   byte back after writing it and fails if what landed is not what it wrote, and
@@ -34,8 +34,8 @@ All notable changes to read-it-back are documented here. Format follows
 
 - **Renamed from `read-back` to `read-it-back`.** npm compares package names
   without punctuation, so `read-back` is refused while `readback` exists. The
-  skill name, the package name and the install directory change together; the
-  repository keeps its old address for now.
+  skill name, the package name, the install directory and the repository
+  change together. GitHub redirects the old repository address.
 - The description also covers writing such a command for a script or CI step,
   so the command fails when nothing matched. An eval case that asked for a CI
   one-liner never loaded the skill before this line.
@@ -53,4 +53,4 @@ All notable changes to read-it-back are documented here. Format follows
 - The package version and the version in `SKILL.md` frontmatter are one number,
   pinned by a test.
 
-[Unreleased]: https://github.com/efaimo-ai/read-back/commits/main
+[Unreleased]: https://github.com/efaimo-ai/read-it-back/commits/main
