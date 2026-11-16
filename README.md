@@ -65,8 +65,17 @@ stdout, and the repository is the whole thing.
 
 ## Where a write goes wrong
 
-```mermaid
-flowchart LR
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-eb4dafc22a-dark.png">
+  <img alt="What you wrote passes through the shell, which expands, splits and quotes it, and the command passes what it received to the tool, which writes what lands on disk. The tool's exit 0 says nothing about what landed, so read it back and compare." src="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-eb4dafc22a-light.png" width="342">
+</picture>
+
+<details>
+<summary>Mermaid source</summary>
+
+```text
+flowchart TD
+    accDescr: What you wrote passes through the shell, which expands, splits and quotes it, and the command passes what it received to the tool, which writes what lands on disk. The tool's exit 0 says nothing about what landed, so read it back and compare.
     W["what you wrote"] --> S["the shell<br/><i>expands, splits, quotes</i>"]
     S --> C["what the command received"]
     C --> T["the tool<br/><i>sed, perl, replace, patch</i>"]
@@ -79,6 +88,8 @@ flowchart LR
     class RB pass;
     class E fail;
 ```
+
+</details>
 
 Two independent ways to succeed at nothing: a shell that rewrote the payload it
 carried, and a replacement that matched nothing and exited 0 for it.
@@ -142,8 +153,17 @@ A skill is not free just because it is markdown. Its frontmatter is loaded at
 the start of every session for every skill you have installed, whether or not it
 ever fires.
 
-```mermaid
-flowchart LR
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-6e12525ded-dark.png">
+  <img alt="Installing puts SKILL.md and references/ in .claude/skills/read-it-back/. The frontmatter enters your context window in every session, the body only when the skill triggers, and the references only if the agent reads them." src="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-6e12525ded-light.png" width="756">
+</picture>
+
+<details>
+<summary>Mermaid source</summary>
+
+```text
+flowchart TD
+    accDescr: Installing puts SKILL.md and references/ in .claude/skills/read-it-back/. The frontmatter enters your context window in every session, the body only when the skill triggers, and the references only if the agent reads them.
     N["npx -y --allow-git=all github:efaimo-ai/read-back"] --> D[/".claude/skills/read-it-back/"/]
     D --> M["frontmatter<br/><b>every session, always</b>"]
     D --> B["SKILL.md body<br/><i>only when it triggers</i>"]
@@ -156,6 +176,8 @@ flowchart LR
     class M always;
     class B,R lazy;
 ```
+
+</details>
 
 
 
@@ -178,8 +200,17 @@ Every skill in this set is about a report that was true about the wrong thing.
 | [`mcp-stateless-migration`](https://github.com/efaimo-ai/mcp-stateless-migration) | a server said ok | which revision it speaks |
 | [`efaimo`](https://github.com/efaimo-ai/efaimo) | a tool said A(100) | what a grade certifies, and what it costs |
 
-```mermaid
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-662c01e10e-dark.png">
+  <img alt="Every skill in the set and the efaimo CLI, with an edge for each handoff between two of them. read-it-back is highlighted." src="https://raw.githubusercontent.com/efaimo-ai/read-back/main/assets/diagram-662c01e10e-light.png" width="758">
+</picture>
+
+<details>
+<summary>Mermaid source</summary>
+
+```text
 graph TD
+    accDescr: Every skill in the set and the efaimo CLI, with an edge for each handoff between two of them. read-it-back is highlighted.
     red_before_green["red-before-green"]
     denominator["denominator"]
     read_it_back["read-it-back"]
@@ -204,6 +235,8 @@ graph TD
     classDef self fill:#0b728533,stroke:#0b7285,stroke-width:2px;
     class read_it_back self;
 ```
+
+</details>
 
 Each edge is a real handoff, not a category: the reason one skill points at
 another is written into it at [efaimo.com/skills](https://efaimo.com/skills), and
